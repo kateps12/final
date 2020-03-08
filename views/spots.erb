@@ -1,0 +1,30 @@
+<h1>Ode to Pizza</h1>
+<h2>Vote for your favorite pizza spot!</h2>
+<h2>or find your next one ... </h2>
+
+<button type="button" class="btn btn-primary">Vote now! add a href to vote sheet </button>
+
+<% for spot in @spots %>
+  <p><a href="/spots/thinspots>"><%= spot[:name] %></a></p>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6"> <h3>Team Thin Crust!</h3>
+    <h4>"####" Strong</h4>
+      <p>Top ten thin crust pizza spots:</p>
+      <% for spot in @spots %>
+        <p><a href="/spots/<%= spot[:id] %>"><%= spot[:name] %></a></p>
+      <% end %>
+    </div>
+    <div class="col-md-6"> <h3>Team Deep Dish!</h3>
+    <h4>"####" Strong</h4>
+      <p>Top ten deep dish pizza spots:</p>
+      <% for spot in @spots %>
+        <p><a href="/spots/<%= spot[:id] %>"><%= spot[:name] %></a></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
