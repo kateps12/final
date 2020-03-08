@@ -4,9 +4,9 @@
 
 <button type="button" class="btn btn-primary">Vote now! add a href to vote sheet </button>
 
-<div class="container">
-  <p><a href="/spots/thincrust">Thincrust</a></p>
-</div>
+<% for spot in @spots %>
+  <p><a href="/spots/thinspots>"><%= spot[:name] %></a></p>
+<% end %>
 
 <div class="container">
   <div class="row">

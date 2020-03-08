@@ -24,19 +24,9 @@ get "/" do
     view "spots"
 end
 
-get "/spots/thincrust" do
-#   puts params
-#   @thin = spots_table.all.to_a
-#     if @thin == true
-#       view "thincrust"
-#     else 
-#       view "deepdish"
-#     end
-  view "thincrust"
-end
-
-get "/spots/deepdish" do
-    view "deepdish"
+get "/spots/:thincrust/" do
+    @spots = spots_table.all.to_a
+    view "thinspots"
 end
 
 get "/spots/:id" do
@@ -61,6 +51,4 @@ get "/spots/:id/votes/create" do
                        comments: params["comments"])
     view "create_vote"
 end
-
-
 
