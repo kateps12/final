@@ -1,8 +1,5 @@
-<h2>
-    <i class="far fa-calendar-alt"></i>
-    <%= @spots[:name] %>
-</h2>
-<h1>Vote for <%= @spots[:name] %></h1>
+
+<h1>Vote for <%= @spot[:name] %></h1>
 
 <form action="/spots/<%= @spot[:id] %>/votes/create">
   <div class="form-group">

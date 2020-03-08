@@ -1,32 +1,19 @@
-<div class="row">
-    <div class="col-sm-9">
-        <h2>
-            <i class="far fa-calendar-alt"></i>
-            <%= @spot[:website] %>
-        </h2>
-        <h1><%= @spot[:name] %></h1>
-        <p><%= @spot[:address] %></p>
-        <% for vote in @votes %>
-            <div class="media">
-                <% if vote[:like] %>
-                    <i class="fas fa-thumbs-up fa-3x mr-3"></i>
-                <% else %>
-                    <i class="fas fa-thumbs-down fa-3x mr-3"></i>
-                <% end %>
-                <div class="media-body">
-                    <h5 class="mt-0"><%= @users_table.where(id: vote[:user_id]).to_a[0][:name] %></h5>
-                    <%= vote[:comments] %>
-                </div>
-            </div>
-        <% end %>
-        <p class="mt-5">
-            <a href="/spots/<%= @spot[:id] %>/votes" class="btn btn-primary">Vote now!</a>
-        </p>
-    </div>
-    <div class="col-sm-3">
-        <h3>Where?</h3>
-        <p><%= @spot[:address] %></p>
-        <h3>How many guests so far?</h3>
-        <p><%= @vote_count %></p>
-    </div>
-</div>
+
+
+
+
+<h1><%= @spot[:name] %></h1>
+<p><%= @spot[:address] %></p>
+
+<h3>Likes</h3>
+<p><%= @vote_count %></p>
+
+<a href="/spots/<%= @spot[:id] %>/votes/new" class="btn btn-primary">Vote now!</a>
+
+
+  primary_key :id
+  String :name
+  String :address
+  String :phone
+  String :website
+  Boolean :thincrust
