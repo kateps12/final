@@ -25,7 +25,8 @@ get "/" do
 end
 
 get "/spots/thincrust" do
-#   puts params
+  @spots = spots_table.all.to_a
+    #   puts params
 #   @thin = spots_table.all.to_a
 #     if @thin == true
 #       view "thincrust"
@@ -36,6 +37,7 @@ get "/spots/thincrust" do
 end
 
 get "/spots/deepdish" do
+    @spots = spots_table.all.to_a
     view "deepdish"
 end
 
@@ -46,20 +48,20 @@ get "/spots/:id" do
     @users_table = users_table
     view "spot"
 end
-###
-get "/spots/:id/spots/new" do
+
+get "/spots/:id/new" do
     @spot = spots_table.where(id: params[:id]).to_a[0]
     view "new_spot"
 end
 
-get "/spots/:id/votes/create" do
+get "/spots/:id/votes" do
     puts params
     @spot = spots_table.where(id: params[:id]).to_a[0]
     votes_table.insert(spots_id: params["id"],
                        user_id: session["user_id"],
                        like: params["like"],
                        comments: params["comments"])
-    view "create_vote"
+    view "new_vote"
 end
 
 

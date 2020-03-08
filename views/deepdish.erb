@@ -4,3 +4,10 @@
 <button type="button" class="btn btn-primary">Vote now! add a href to vote sheet </button>
 
 <p>hello Deep dish</p>
+
+<% for spot in @spots %>
+  <p><a href="/spots/<%= spot[:id] %>"><%= spot[:name] %></a></p>
+<% end %>
+
+
+    
