@@ -18,6 +18,10 @@ spots_table = DB.from(:spots)
 votes_table = DB.from(:votes)
 users_table = DB.from(:users)
 
+before do
+    @current_user = users_table.where(id: session["user_id"]).to_a[0]
+end
+
 get "/" do
     puts spots_table.all
     @spots = spots_table.all.to_a
@@ -76,3 +80,47 @@ end
 #     @spot = spots_table.where(id: params[:id]).to_a[0]
 #     view "new_spot"
 # end
+
+
+get "/users/new" do
+    view "new_user"
+end
+
+get "/users/create" do
+    puts params
+    users_table.insert(name: params["name"],
+                       email: params["email"],
+                       password: BCrypt::Password.create(params["password"]))
+    view "create_user"
+end
+
+get "/logins/new" do
+    view "new_login"
+end
+
+post "/logins/create" do
+    puts params
+    email_address = params["email"]
+    password = params["password"]
+
+    @user = users_table.where(email: email_address).to_a[0]
+    #is there a user in the users table where the email is equal to the email address?
+    #we will select a user from the users table where the email address is equal to the email. 
+    #need to check it, so use IF statement.
+
+    if @user
+        if BCrypt::Password.new(@user[:password]) == password #see variable defined above, where password = params["password"]
+            session["user_id"] = @user[:id]
+            view "create_login"
+        else 
+            view "create_login_failed"
+        end
+    else 
+        view "create_login_failed"
+    end
+end
+
+get "/logout" do
+    session["user_id"] = nil
+    view "logout"
+end

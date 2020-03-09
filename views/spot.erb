@@ -10,6 +10,10 @@
 
 <a href="/spots/<%= @spot[:id] %>/votes/new" class="btn btn-primary">Vote now!</a>
 
+<div class="media-body">
+<h5 class="mt-0"><%= @users_table.where(id: votes[:user_id]).to_a[0][:name] %></h5>
+<%= votes[:comments] %>
+</div>
 
   primary_key :id
   String :name
