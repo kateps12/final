@@ -57,10 +57,6 @@ get "/spots/:id/votes/new" do
     puts params
     @spots = spots_table.all.to_a
     @spot = spots_table.where(id: params[:id]).to_a[0]
-    votes_table.insert(spots_id: params["id"],
-                       user_id: session["user_id"],
-                       like: params["like"],
-                       comments: params["comments"])
     view "new_vote"
 end
 

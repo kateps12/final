@@ -1,23 +1,17 @@
-
-
-
-
 <h1><%= @spot[:name] %></h1>
 <p><%= @spot[:address] %></p>
 
 <h3>Likes</h3>
 <p><%= @vote_count %></p>
 
-<a href="/spots/<%= @spot[:id] %>/votes/new" class="btn btn-primary">Vote now!</a>
+<a href="/spots/<%= @spot[:id] %>/votes/create" class="btn btn-primary">Vote now!</a>
 
-<div class="media-body">
-<h5 class="mt-0"><%= @users_table.where(id: votes[:user_id]).to_a[0][:name] %></h5>
-<%= votes[:comments] %>
-</div>
-
-  primary_key :id
-  String :name
-  String :address
-  String :phone
-  String :website
-  Boolean :thincrust
+<% for vote in @votes %>
+  <% if vote[:like] %>
+  <i class="fas fa-thumbs-up fa-3x mr-3"></i>
+  <% else %>
+  <i class="fas fa-thumbs-down fa-3x mr-3"></i>
+  <% end %>
+  <h5><%= @users_table.where(id: vote[:user_id]).to_a[0][:name] %></h5>
+  <%= vote[:comments] %>
+<% end %>
