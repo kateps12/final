@@ -4,14 +4,15 @@
 <h3>Likes</h3>
 <p><%= @vote_count %></p>
 
-<a href="/spots/<%= @spot[:id] %>/votes/create" class="btn btn-primary">Vote now!</a>
+<a href="/spots/<%= @spot[:id] %>/votes/new" class="btn btn-primary">Vote now!</a>
 
 <% for vote in @votes %>
   <% if vote[:like] %>
-  <i class="fas fa-thumbs-up fa-3x mr-3"></i>
+    <i class="fas fa-thumbs-up fa-3x mr-3"></i>
   <% else %>
-  <i class="fas fa-thumbs-down fa-3x mr-3"></i>
+    <i class="fas fa-thumbs-down fa-3x mr-3"></i>
   <% end %>
-  <h5><%= @users_table.where(id: vote[:user_id]).to_a[0][:name] %></h5>
-  <%= vote[:comments] %>
+    <%= @users_table.where(id: vote[:user_id]).to_a[0]%>
+    <%= vote[:comments] %> 
 <% end %>
+
