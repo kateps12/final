@@ -4,7 +4,8 @@ require "sinatra/reloader" if development?                                      
 require "sequel"                                                                      #
 require "logger"                                                                      #
 require "twilio-ruby"                                                                 #
-require "bcrypt"                                                                   #
+require "bcrypt"   
+require "geocoder"                                                                #
 connection_string = ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/development.sqlite3"  #
 DB ||= Sequel.connect(connection_string)                                              #
 DB.loggers << Logger.new($stdout) unless DB.loggers.size > 0                          #
@@ -132,11 +133,7 @@ get "/search" do
   @lat_long = "#{@lat},#{@long}" 
   @location = results.first.city
 
-  forecast = ForecastIO.forecast(@lat,@long).to_hash
 
-@current_temperature = forecast["currently"]["temperature"]
-@current_conditions = forecast["currently"]["summary"]
-@day = forecast["daily"]["data"]
 
 view "search"
 
