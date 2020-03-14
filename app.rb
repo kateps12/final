@@ -82,7 +82,7 @@ end
 #     view "new_spot"
 # end
 
-get "/spots/new_spot" do
+get "/spots/newspot" do
     puts params
     @spots = spots_table.all.to_a
     @spot = spots_table.where(id: params[:id]).to_a[0]

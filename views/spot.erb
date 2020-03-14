@@ -8,15 +8,10 @@ frameborder="0" style="border:0"
 src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw&q=<%= @spot[:address] %>&zoom=13" allowfullscreen>
 </iframe>
 
-
-
 <h3>Likes</h3>
 <p><%= @vote_count %></p>
 
 <a href="/spots/<%= @spot[:id] %>/votes/new" class="btn btn-primary">Vote now!</a>
-
-
-
 
 <% for vote in @votes %>
   <div class="media">
