@@ -21,27 +21,22 @@ users_table = DB.from(:users)
 
 before do
     @current_user = users_table.where(id: session["user_id"]).to_a[0]
+    @spots = spots_table.all.to_a
 end
 
 get "/" do
     puts spots_table.all
-    @spots = spots_table.all.to_a
-    # @spot = spots_table.where(id: params[:id]).to_a[0]
-    # @votes = votes_table.where(spots_id: @spot[:id])
-    # @vote_count = votes_table.where(spots_id: @spot[:id]).sum(:like)
-    # @total_vote = votes_table.where(id: params[:id]).sum(:like)
-  view "spots"
+    view "spots"
 end
 
-get "/spots/thincrust" do
-  @spots = spots_table.all.to_a
-  view "thincrust"
-end
+# get "/spots/thincrust" do
+#     puts params
+#     view "thincrust"
+# end
 
-get "/spots/deepdish" do
-    @spots = spots_table.all.to_a
-    view "deepdish"
-end
+# get "/spots/deepdish" do
+#     view "deepdish"
+# end
 
 get "/spots/:id" do
     @spot = spots_table.where(id: params[:id]).to_a[0]
@@ -53,14 +48,12 @@ end
 
 get "/spots/:id/votes/new" do
     puts params
-    @spots = spots_table.all.to_a
     @spot = spots_table.where(id: params[:id]).to_a[0]
     view "new_vote"
 end
 
 get "/spots/:id/votes/create" do
     puts params
-    @spots = spots_table.all.to_a
     @spot = spots_table.where(id: params[:id]).to_a[0]
     votes_table.insert(spots_id: params["id"],
                        user_id: session["user_id"],

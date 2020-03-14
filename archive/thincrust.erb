@@ -4,6 +4,7 @@
 <% for spot in @spots %>
   <% if spot[:thincrust] == "Yes" %>
     <p><a href="/spots/<%= spot[:id] %>"><%= spot[:name] %></a></p>
+    
     <a href="/spots/<%= spot[:id] %>/votes/new" class="btn btn-primary">Vote now! add a href to vote sheet </a>
   <% else %>
   <% end %>

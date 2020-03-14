@@ -5,21 +5,26 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6"> 
-    <a href="/spots/thincrust"><h3>Team Thin Crust!</h3></a>
-    <h4>"####" Strong</h4>
+        <h3>Team Thin Crust!</h3>
+        <h4>"####" Strong</h4>
+        <% for spot in @spots %>
+            <% if spot[:thincrust] == "Yes" %>
+                <p><a href="/spots/<%= spot[:id] %>"><%= spot[:name] %></a></p> 
+                <a href="/spots/<%= spot[:id] %>/votes/new" class="btn btn-primary">Vote now! add a href to vote sheet </a>
+            <% else %>
+            <% end %>
+        <% end %>
     </div>
     <div class="col-md-6"> 
-    <a href="/spots/deepdish"><h3>Team Deep Dish!</h3></a>
-    <h4>"####" Strong</h4>
-    <p><%= @total_vote %></p>
+        <h3>Team Deep Dish!</h3>
+        <h4>"####" Strong</h4>
+        <% for spot in @spots %>
+            <% if spot[:thincrust] == "No" %>
+                <p><a href="/spots/<%= spot[:id] %>"><%= spot[:name] %></a></p>
+                <a href="/spots/<%= spot[:id] %>/votes/new" class="btn btn-primary">Vote now! add a href to vote sheet </a>
+            <% else %>
+            <% end %>
+        <% end %>
     </div>
   </div>
-</div>
-
-<div class="container mt-5">
-  <h1>Enter your location of interest:</h1>
-  <form action="/search">
-    <input type="text" name="q">
-    <button type="submit">Get Information</submit>
-  </form>
 </div>
