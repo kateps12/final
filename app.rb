@@ -35,13 +35,6 @@ end
 
 get "/spots/thincrust" do
   @spots = spots_table.all.to_a
-    #   puts params
-#   @thin = spots_table.all.to_a
-#     if @thin == true
-#       view "thincrust"
-#     else 
-#       view "deepdish"
-#     end
   view "thincrust"
 end
 
@@ -76,29 +69,23 @@ get "/spots/:id/votes/create" do
     view "create_vote"
 end
 
-
-# get "/spots/:id/new" do
+# get "/spots/newspot" do
+#     puts params
+#     @spots = spots_table.all.to_a
 #     @spot = spots_table.where(id: params[:id]).to_a[0]
 #     view "new_spot"
 # end
 
-get "/spots/newspot" do
-    puts params
-    @spots = spots_table.all.to_a
-    @spot = spots_table.where(id: params[:id]).to_a[0]
-    view "new_spot"
-end
-
-get "/spots/create" do
-    puts params
-    spots_table.insert(id: params["id"],
-                       name: session["name"],
-                       address: params["address"],
-                       phone: params["phone"],
-                       website: params["website"],
-                       thincrust: params["thincrust"])
-    view "create_spot"
-end
+# get "/spots/create" do
+#     puts params
+#     spots_table.insert(id: params["id"],
+#                        name: session["name"],
+#                        address: params["address"],
+#                        phone: params["phone"],
+#                        website: params["website"],
+#                        thincrust: params["thincrust"])
+#     view "create_spot"
+# end
 
 get "/users/new" do
     view "new_user"
@@ -142,18 +129,3 @@ get "/logout" do
     session["user_id"] = nil
     view "logout"
 end
-
-
-#####
-
-# get "/search" do 
-#   puts params
-#   results = Geocoder.search(params["q"])
-#   puts results
-#   lat_long = results.first.coordinates # => [lat, long]
-#   @lat = lat_long[0] 
-#   @long = lat_long[1] 
-#   @lat_long = "#{@lat},#{@long}" 
-#   @location = results.first.address
-#   view "search"
-# end
