@@ -26,7 +26,11 @@ end
 get "/" do
     puts spots_table.all
     @spots = spots_table.all.to_a
-    view "spots"
+    # @spot = spots_table.where(id: params[:id]).to_a[0]
+    # @votes = votes_table.where(spots_id: @spot[:id])
+    # @vote_count = votes_table.where(spots_id: @spot[:id]).sum(:like)
+    # @total_vote = votes_table.where(id: params[:id]).sum(:like)
+  view "spots"
 end
 
 get "/spots/thincrust" do
@@ -78,6 +82,23 @@ end
 #     view "new_spot"
 # end
 
+get "/spots/new_spot" do
+    puts params
+    @spots = spots_table.all.to_a
+    @spot = spots_table.where(id: params[:id]).to_a[0]
+    view "new_spot"
+end
+
+get "/spots/create" do
+    puts params
+    spots_table.insert(id: params["id"],
+                       name: session["name"],
+                       address: params["address"],
+                       phone: params["phone"],
+                       website: params["website"],
+                       thincrust: params["thincrust"])
+    view "create_spot"
+end
 
 get "/users/new" do
     view "new_user"
@@ -125,16 +146,14 @@ end
 
 #####
 
-get "/search" do 
-  results = Geocoder.search(params["q"])
-  lat_long = results.first.coordinates # => [lat, long]
-  @lat = lat_long[0] 
-  @long = lat_long[1] 
-  @lat_long = "#{@lat},#{@long}" 
-  @location = results.first.city
-
-
-
-view "search"
-
-end
+# get "/search" do 
+#   puts params
+#   results = Geocoder.search(params["q"])
+#   puts results
+#   lat_long = results.first.coordinates # => [lat, long]
+#   @lat = lat_long[0] 
+#   @long = lat_long[1] 
+#   @lat_long = "#{@lat},#{@long}" 
+#   @location = results.first.address
+#   view "search"
+# end

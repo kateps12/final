@@ -1,18 +1,35 @@
 <h1><%= @spot[:name] %></h1>
 <p><%= @spot[:address] %></p>
 
+<iframe
+width="600"
+height="450"
+frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw&q=<%= @spot[:address] %>&zoom=13" allowfullscreen>
+</iframe>
+
+
+
 <h3>Likes</h3>
 <p><%= @vote_count %></p>
 
 <a href="/spots/<%= @spot[:id] %>/votes/new" class="btn btn-primary">Vote now!</a>
 
+
+
+
 <% for vote in @votes %>
-  <% if vote[:like] %>
-    <i class="fas fa-thumbs-up fa-3x mr-3"></i>
-  <% else %>
-    <i class="fas fa-thumbs-down fa-3x mr-3"></i>
-  <% end %>
-    <%= @users_table.where(id: vote[:user_id]).to_a[0]%>
-    <%= vote[:comments] %> 
+  <div class="media">
+    <% if vote[:like] %>
+      <i class="fas fa-thumbs-up fa-3x mr-3"></i>
+    <% else %>
+      <i class="fas fa-thumbs-down fa-3x mr-3"></i>
+    <% end %>
+    <div class="media-body">
+      <h5 class="mt-0"><%= @users_table.where(id: vote[:user_id]).to_a[0][:name] %></h5>
+      <%= vote[:comments] %>
+    </div>
+  </div>
 <% end %>
+
 

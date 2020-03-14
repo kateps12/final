@@ -1,21 +1,28 @@
-<h2>
-    <i class="far fa-calendar-alt"></i>
-    <%= @spot[:name] %>
-</h2>
-<h1>RSVP for <%= @spot[:name] %></h1>
+<h2>Add a spot</h2>
 
-<form action="/spots/<%= @spot[:id] %>/votes/create">
+<form action="/spots/create">
+ <div class="form-group">
+    <label>Comments</label>
+    <textarea class="form-control" rows="1" name="name"></textarea>
+  </div>
   <div class="form-group">
-    <label>Are you going?</label>
-    <select class="form-control" name="like">
+    <label>Comments</label>
+    <textarea class="form-control" rows="1" name="address"></textarea>
+  </div>
+  <div class="form-group">
+    <label>Comments</label>
+    <textarea class="form-control" rows="1" name="phone"></textarea>
+  </div>
+  <div class="form-group">
+    <label>Comments</label>
+    <textarea class="form-control" rows="1" name="website"></textarea>
+  </div>
+  <div class="form-group">
+    <label>Add your favorite pizza place:</label>
+    <select class="form-control" name="thincrust">
       <option value="1">Yes</option>
       <option value="0">No</option>
     </select>
-  </div>
-
-  <div class="form-group">
-    <label>Comments</label>
-    <textarea class="form-control" rows="3" name="comments"></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

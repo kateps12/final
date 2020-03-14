@@ -1,12 +1,12 @@
 <h1>Deep Dish Pizza Spots</h1>
 <h2>"###" Strong</h2>
 
-<button type="button" class="btn btn-primary">Vote now! add a href to vote sheet </button>
-
-<p>hello Deep dish</p>
-
 <% for spot in @spots %>
-  <p><a href="/spots/<%= spot[:id] %>"><%= spot[:name] %></a></p>
+  <% if spot[:thincrust] == "No" %>
+    <p><a href="/spots/<%= spot[:id] %>"><%= spot[:name] %></a></p>
+    <a href="/spots/<%= spot[:id] %>/votes/new" class="btn btn-primary">Vote now! add a href to vote sheet </a>
+  <% else %>
+  <% end %>
 <% end %>
 
 
