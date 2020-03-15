@@ -1,40 +1,58 @@
-<h1><%= @spot[:name] %></h1>
-<p><%= @spot[:address] %></p>
+<div class="container">
+    <h1><%= @spot[:name] %></h1>
+    <p><%= @spot[:address] %></p>
 
-<div class="row">
-    <div class="col-md-6">
-        <% if @vote_count == nil %>
-            <h3>No votes yet <i class="far fa-frown"></i> ... vote now! </h3>
-        <% else %>
-            <h3>Likes: <%= @vote_count %></h3>
-        <% end %>
-        <% for vote in @votes %>
-            <div class="media">
-                <% if vote[:like] %>
-                    <i class="fas fa-thumbs-up fa-3x mr-3"></i>
-                <% else %>
-                    <i class="fas fa-thumbs-down fa-3x mr-3"></i>
-                <% end %>
-                    <div class="media-body">
-                        <h5 class="mt-0"><%= @users_table.where(id: vote[:user_id]).to_a[0][:name] %></h5>
-                        <%= vote[:comments] %>
-                    </div>
-            </div>
-        <% end %>
-        <p class="mt-5">
-            <% if @current_user %>
-                <a href="/spots/<%= @spot[:id] %>/votes/new" class="btn btn-primary">Vote Pizza spots now!</a>
-            <% else %>
-                <a href="/logins/new" class="btn btn-danger">Please sign in to vote</a>
-            <% end %>
-        </p>
+    <div class="row">
+        <div class="col-md-12"> 
+            <p class="spacing"></p>
+        </div>
     </div>
-    <div class="col-md-6">
-        <iframe
-        width="600"
-        height="450"
-        frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw&q=<%= @spot[:address] %>&zoom=13" allowfullscreen>
-        </iframe>
+
+    <div class="row">
+        <div class="col-md-6">
+            <% if @vote_count == nil %>
+                <h3>No votes yet <i class="far fa-frown"></i> ... vote now! </h3>
+            <% else %>
+                <h3>Likes: <%= @vote_count %></h3>
+            <% end %>
+            <p>
+                <% if @current_user %>
+                    <a href="/spots/<%= @spot[:id] %>/votes/new" class="btn btn-warning">Vote Pizza spots now!</a>
+                <% else %>
+                    <a href="/logins/new" class="btn btn-danger">Please sign in to vote</a>
+                <% end %>
+            </p>
+            <div class="row">
+                <div class="col-md-12"> 
+                    <p class="spacing"></p>
+                </div>
+            </div>
+            <% for vote in @votes %>
+                <div class="media">
+                    <% if vote[:like] %>
+                        <i class="far fa-thumbs-up fa-3x mr-3"></i>
+                    <% else %>
+                        <i class="far fa-thumbs-down fa-3x mr-3"></i>
+                    <% end %>
+                        <div class="media-body">
+                            <h5 class="mt-0"><%= @users_table.where(id: vote[:user_id]).to_a[0][:name] %></h5>
+                            <p> Comments: <%= vote[:comments] %> </p>
+                        </div>
+                </div>
+            <% end %>
+        </div>
+        <div class="col-md-6">
+            <iframe
+            width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw&q=<%= @spot[:address] %>&zoom=13" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12"> 
+            <p class="spacing_bottom"></p>
+        </div>
     </div>
 </div>

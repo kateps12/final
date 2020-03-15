@@ -1,0 +1,22 @@
+.btn-warning {
+    color:  maroon;
+    font-family: 'Acme', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.spacing {
+    margin-bottom: 15px;
+}
+
+.spacing_bottom {
+    margin-bottom: 50px;
+}
+
+.fas {
+    color:  maroon;
+}
+
+.jumbotron {
+    background: rgb(255, 193, 7); 
+}
