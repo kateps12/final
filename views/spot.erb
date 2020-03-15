@@ -17,7 +17,7 @@
             <% end %>
             <p>
                 <% if @current_user %>
-                    <a href="/spots/<%= @spot[:id] %>/votes/new" class="btn btn-warning">Vote Pizza spots now!</a>
+                    <a href="/spots/<%= @spot[:id] %>/votes/new" class="btn btn-warning">Vote for <%= @spot[:name] %> now!</a>
                 <% else %>
                     <a href="/logins/new" class="btn btn-danger">Please sign in to vote</a>
                 <% end %>
