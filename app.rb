@@ -41,7 +41,7 @@ end
 get "/spots/:id" do
     @spot = spots_table.where(id: params[:id]).to_a[0]
     @votes = votes_table.where(spots_id: @spot[:id])
-    @vote_count = votes_table.where(spots_id: @spot[:id]).sum(:like)
+    @vote_count = votes_table.where(spots_id: @spot[:id], like: true).count
     @users_table = users_table
     view "spot"
 end
